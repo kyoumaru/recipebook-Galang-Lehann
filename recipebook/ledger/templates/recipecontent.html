@@ -1,15 +1,14 @@
 {% extends 'index.html' %}
+{% block subheader %} Recipe Detail {% endblock %}
 {% block content %} 
+    {{ recipe.name }}
+    by {{ recipe.author }}
     <ul>
-        <li>
-            {{ recipe.name }}
-            <ul>
-                {% for ingredient in ingredients %}
-                <li>
-                    {{ ingredient.Ingredient }} - {{ingredient.Quantity}}
-                </li>
+        {% for ingredient in ingredients %}
+            <li>
+                {{ ingredient.Ingredient }} - {{ingredient.Quantity}}
+            </li>
         {% endfor %}
-            </ul>
-        </li>
     </ul>
+
 {% endblock %}
