@@ -1,4 +1,4 @@
-{% extends 'index.html' %}
+{% extends 'base.html' %}
 
 {% block subheader %} Recipes List{% endblock %}
 {% block content %} 
@@ -9,4 +9,8 @@
             </li>
         {% endfor %}
     </ul>
+
+    <a href="{% url 'ledger:recipe_add' %}">
+        <button>Add Recipe</button> 
+    </a>
 {% endblock %}

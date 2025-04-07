@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block subheader %} Recipe Detail {% endblock %}
+{% block content %} 
+    {{ recipe.name }}
+    by {{ recipe.author }}
+
+    {% for img in recipe.images.all %}
+        {% if img.image %}
+            <img src="{{ img.image.url }}" alt="{{image.description}}" style="max-height:300px;">
+        {% endif %}
+    
+    {% empty %}
+        <p>No Existing Images</p>
+    {% endfor %}
+    
+    <ul>
+        {% for ingredient in ingredients %}
+            <li>
+                {{ ingredient.Ingredient }} - {{ingredient.Quantity}}
+            </li>
+        {% empty %}
+            <p>No Ingredients</p>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'ledger:image_add' recipe.id %}">
+        <button>Add Image</button> 
+    </a>
+
+{% endblock %}
