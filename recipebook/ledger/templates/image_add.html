@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Add Image{% endblock %}
+
+{% block content %}
+    <form method="POST" enctype="multipart/form-data"> 
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">Submit</button>
+    </form>
+    
+    <a href="{{ recipe.get_absolute_url }}" >
+        <button>Return</button>
+    </a>
+        
+{% endblock %}

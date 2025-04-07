@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Ingredient, Recipe, RecipeIngredient, Profile
+from .models import Ingredient, Recipe, RecipeIngredient, Profile, RecipeImage
 from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
@@ -15,10 +15,19 @@ class IngredientAdmin(admin.ModelAdmin):
     search_fields = ('name', )
     list_display = ('name' ,)
 
+class RecipeImageAdmin(admin.ModelAdmin):
+    model = RecipeImage
+    list_display = ('recipe', 'image', 'description')  
+
+class RecipeImageInline(admin.TabularInline):  
+    model = RecipeImage
+    extra = 1  
+
 class RecipeAdmin(admin.ModelAdmin):
     model = Recipe
     search_fields = ('name', 'author', 'created_on', 'updated_on',)
     list_display = ('name' , 'author', 'created_on', 'updated_on',)
+    inlines = [RecipeImageInline]
 
 class RecipeIngredientAdmin(admin.ModelAdmin):
     model = RecipeIngredient
@@ -30,3 +39,4 @@ admin.site.register(User, UserAdmin)
 admin.site.register(Ingredient, IngredientAdmin)
 admin.site.register(Recipe, RecipeAdmin)
 admin.site.register(RecipeIngredient, RecipeIngredientAdmin)
+admin.site.register(RecipeImage, RecipeImageAdmin)
